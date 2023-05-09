@@ -4,10 +4,10 @@
 <!-- Find all Pokemon that fit particular attack/defense/speed values -->
 
 <!-- The below rule will generate a comma-separated list from the 'type' nodes -->
-<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<!-- <xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
 <xsl:template match="type[position() = last()]">
   <xsl:value-of select="text()"/>
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate text output rather than text; these are useful for more easily
@@ -15,7 +15,7 @@
   then update the HTML version of these rules below (and comment these out!) to see a nicely-
   formatted HTML file.
   -->
-<xsl:template match="/pokedex">
+<!-- <xsl:template match="/pokedex">
     Strong attackers:
     <xsl:apply-templates select="pokemon[attack/text() > 150]" />
     Strong defenders:
@@ -26,23 +26,42 @@
 
 <xsl:template match="pokemon">
     <xsl:value-of select="./name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:apply-templates select="type" />
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
   the power of using XSLT to create pretty output from XML sources.
   -->
-<!--
+
 <xsl:template match="/pokedex">
   <html>
   <body>
-  <h2>Generation One Pokemon</h2>
+  <h2>Strong attackers:</h2>
+  Count: <xsl:value-of select="count(pokemon[attack/text() > 150])" />
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name</th>
-      <th>Classification</th>
+      <th>Name (Pokedex Number)</th>
+      <th>Type</th>
     </tr>
-    <xsl:apply-templates select="pokemon[@generation='1']" />
+    <xsl:apply-templates select="pokemon[attack/text() > 150]" />
+  </table>
+  <h2>Strong defenders:</h2>
+  Count: <xsl:value-of select="count(pokemon[defense/text() > 150])" />
+  <table border="1">
+    <tr bgcolor="#9acd32">
+      <th>Name (Pokedex Number)</th>
+      <th>Type</th>
+    </tr>
+    <xsl:apply-templates select="pokemon[defense/text() > 150]" />
+  </table>
+  <h2>Fast:</h2>
+  Count: <xsl:value-of select="count(pokemon[speed/text() > 150])" />
+  <table border="1">
+    <tr bgcolor="#9acd32">
+      <th>Name (Pokedex Number)</th>
+      <th>Type</th>
+    </tr>
+    <xsl:apply-templates select="pokemon[speed/text() > 150]" />
   </table>
   </body>
   </html>
@@ -51,9 +70,8 @@
 <xsl:template match="pokemon">
     <tr>
       <td><xsl:value-of select="./name" />(<xsl:value-of select="@pokedexNumber" />)</td>
-      <td><xsl:value-of select="./@classification" /></td>
+      <td><xsl:value-of select="type" /></td>
     </tr>
 </xsl:template>
--->
 
 </xsl:stylesheet>

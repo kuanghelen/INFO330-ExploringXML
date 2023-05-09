@@ -6,10 +6,10 @@
      WHERE type1 IN ('fire', 'water', 'flying', 'ground') 
         OR type2 IN ('fire', 'water', 'flying', 'ground') = 328 Pokemon -->
 
-<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<!-- <xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
 <xsl:template match="type[position() = last()]">
   <xsl:value-of select="text()"/>
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate text output rather than text; these are useful for more easily
@@ -33,7 +33,7 @@
   the power of using XSLT to create pretty output from XML sources.
   -->
 <xsl:template match="/pokedex">
-  <xsl:variable name="pokemonResults" select="" />
+  <xsl:variable name="pokemonResults" select="pokemon[type='fire' or type='water' or type='flying' or type='ground']" />
 
   <html>
   <body>
@@ -41,7 +41,7 @@
   A total of <xsl:value-of select="count($pokemonResults)" />:
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name</th>
+      <th>Name (Pokedex Number)</th>
       <th>Type(s)</th>
     </tr>
     <xsl:apply-templates select="pokemon[$pokemonResults]" />

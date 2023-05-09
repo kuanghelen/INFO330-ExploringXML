@@ -3,10 +3,10 @@
 
 <!-- The result of this stylesheet should be 384 Pokemon -->
 
-<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<!-- <xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
 <xsl:template match="type[position() = last()]">
   <xsl:value-of select="text()"/>
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate text output rather than text; these are useful for more easily
@@ -14,7 +14,7 @@
   then update the HTML version of these rules below (and comment these out!) to see a nicely-
   formatted HTML file.
   -->
-<xsl:template match="/pokedex">
+<!-- <xsl:template match="/pokedex">
 Single type pokemon: <xsl:value-of select="" />:
 
 <xsl:apply-templates select="" />
@@ -22,25 +22,26 @@ Single type pokemon: <xsl:value-of select="" />:
 
 <xsl:template match="pokemon">
     <xsl:value-of select="./name" /> (<xsl:value-of select="@pokedexNumber" />): <xsl:value-of select="./@classification" /> | <xsl:value-of select="./type" /> |
-</xsl:template>
+</xsl:template> -->
 
 <!--
   These rules will generate HTML output rather than text. This is to demonstrate
   the power of using XSLT to create pretty output from XML sources.
   -->
-<!--
+
 <xsl:template match="/pokedex">
+  <xsl:variable name="pokemonResults" select="pokemon[count(type)=1]" />
   <html>
   <body>
   <h2>Single-type Pokemon</h2>
-  Count: <xsl:value-of select="" />
+  Count: <xsl:value-of select="count($pokemonResults)" />
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name</th>
+      <th>Name (Pokedex Number)</th>
       <th>Classification</th>
       <th>Type</th>
     </tr>
-    <xsl:apply-templates select="" />
+    <xsl:apply-templates select="pokemon[$pokemonResults]" />
   </table>
   </body>
   </html>
@@ -53,6 +54,6 @@ Single type pokemon: <xsl:value-of select="" />:
       <td><xsl:value-of select="./type" /></td>
     </tr>
 </xsl:template>
--->
+
 
 </xsl:stylesheet>
