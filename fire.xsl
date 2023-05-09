@@ -35,10 +35,9 @@
   <html>
   <body>
   <h2>All Fire-type Pokemon</h2>
-  Count: <xsl:value-of select="count(pokemon[type = 'fire'])" />
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name (Pokedex Number)</th>
+      <th>Name</th>
       <th>Types</th>
     </tr>
     <xsl:apply-templates select="pokemon[type = 'fire']" />

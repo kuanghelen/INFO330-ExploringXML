@@ -45,7 +45,6 @@
   <html>
   <body>
   <h2>Generation One Pokemon</h2>
-  Count: <xsl:value-of select="count(pokemon[@generation='1'])" />
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name (Pokedex Number)</th>

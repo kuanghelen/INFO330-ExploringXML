@@ -37,7 +37,7 @@ Single type pokemon: <xsl:value-of select="" />:
   Count: <xsl:value-of select="count($pokemonResults)" />
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name (Pokedex Number)</th>
+      <th>Name</th>
       <th>Classification</th>
       <th>Type</th>
     </tr>

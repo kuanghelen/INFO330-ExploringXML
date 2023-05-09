@@ -41,7 +41,7 @@
   A total of <xsl:value-of select="count($pokemonResults)" />:
   <table border="1">
     <tr bgcolor="#9acd32">
-      <th>Name (Pokedex Number)</th>
+      <th>Name</th>
       <th>Type(s)</th>
     </tr>
     <xsl:apply-templates select="pokemon[$pokemonResults]" />
